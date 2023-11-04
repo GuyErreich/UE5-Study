@@ -12,6 +12,11 @@
 				"Engine",
 				"CoreUObject"
 			]
+		},
+		{
+			"Name": "Basic_Blocked_Game_Editor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
 		}
 	],
 	"Plugins": [
@@ -25,6 +30,11 @@
 		{
 			"Name": "MotionWarping",
 			"Enabled": true
+		},
+		{
+			"Name": "CircularDependenciesDetector",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/698a2106995e41cb934ada3bb0088a5f"
 		}
 	]
 }
