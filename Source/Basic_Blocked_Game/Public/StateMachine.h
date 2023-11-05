@@ -34,8 +34,8 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void Initialize(UState* InitialState);
+	// UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	// void Initialize(UState* InitialState);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
     void ChangeState(UState* NewState);

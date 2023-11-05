@@ -3,15 +3,15 @@
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "FSM",
-	"Description": "FSM System",
+	"Description": "",
 	"Category": "Other",
-	"CreatedBy": "Guy Erreich",
+	"CreatedBy": "",
 	"CreatedByURL": "",
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
 	"CanContainContent": true,
-	"IsBetaVersion": true,
+	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Modules": [
@@ -19,6 +19,11 @@
 			"Name": "FSM",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "FSMEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
 		}
 	]
 }

@@ -2,6 +2,7 @@
 
 
 #include "StateMachine.h"
+#include "Templates/SharedPointer.h"
 
 // Sets default values for this component's properties
 UStateMachine::UStateMachine()
@@ -27,15 +28,15 @@ void UStateMachine::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 	CurrentState->Update();
 }
 
-void UStateMachine::Initialize_Implementation(UState *InitialState)
-{
-	CurrentState = InitialState;
+// void UStateMachine::Initialize_Implementation(UState *InitialState)
+// {
+// 	CurrentState = InitialState;
 
-	if (CurrentState)
-	{
-		CurrentState->Enter();
-	}
-}
+// 	if (CurrentState)
+// 	{
+// 		CurrentState->Enter();
+// 	}
+// }
 
 void UStateMachine::ChangeState_Implementation(UState *NewState)
 {
@@ -60,16 +61,16 @@ void UStateMachine::PostEditChangeProperty(FPropertyChangedEvent& PropertyChange
 
 	if (PropertyChangedEvent.Property && PropertyName == GET_MEMBER_NAME_CHECKED(UStateMachine, StatesNames))
 	{
+
+
+
+
 		States.Empty();
-
 		int32 NumEnumValues = StatesNames->NumEnums() - 1;
-
 		for (int32 Index = 0; Index < NumEnumValues; ++Index)
 		{
 			FString Name = StatesNames->GetDisplayNameTextByIndex(Index).ToString();
-
 			UE_LOG(LogTemp, Log,  TEXT("MyVariable's value is: %s"), *Name);
-
 			States.Add(Name, nullptr);
 		} 
 	}
