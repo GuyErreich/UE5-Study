@@ -21,6 +21,45 @@ void FFSMEditorModule::ShutdownModule()
 void FFSMEditorModule::InitCBMenuExtention()
 {
 	FContentBrowserModule& ContentBrowserModule = FModuleManager::LoadModuleChecked<FContentBrowserModule>("ContentBrowser");
+	TArray<FContentBrowserMenuExtender_SelectedPaths>& ContentBrowserModuleMenuExtenders = ContentBrowserModule.GetAllPathViewContextMenuExtenders();
+
+	// FContentBrowserMenuExtender_SelectedPaths CustomCBMenuDelegate;
+	// CustomCBMenuDelegate.BindRaw(this, &FFSMEditorModule::CustomCBMenuExtender);
+
+	// ContentBrowserModuleMenuExtenders.Add(CustomCBMenuDelegate);
+
+	ContentBrowserModuleMenuExtenders.Add(FContentBrowserMenuExtender_SelectedPaths::CreateRaw(this, &FFSMEditorModule::CustomCBMenuExtender));
+}
+
+TSharedRef<FExtender> FFSMEditorModule::CustomCBMenuExtender(const TArray<FString> &SelectedPaths)
+{
+	TSharedRef<FExtender> MenuExtender (new FExtender());
+
+	if (SelectedPaths.Num() > 0)
+	{
+		MenuExtender->AddMenuExtension(
+			"Delete", 
+			EExtensionHook::After, 
+			TSharedPtr<FUICommandList>(),
+			FMenuExtensionDelegate::CreateRaw(this, &FFSMEditorModule::AddCBMenuEntry)
+		);
+	}
+    return MenuExtender;
+}
+
+void FFSMEditorModule::AddCBMenuEntry(FMenuBuilder &MenuBuilder)
+{
+	MenuBuilder.AddMenuEntry(
+		FText::FromString("Delete Unused Assets"),
+		FText::FromString("Safely delete all unused assets under folder"),
+		FSlateIcon(),
+		FExecuteAction::CreateRaw(this, &FFSMEditorModule::OnDeleteUnusedAssetsButtonClicked)
+	);
+}
+
+void FFSMEditorModule::OnDeleteUnusedAssetsButtonClicked()
+{
+
 }
 
 #pragma endregion
